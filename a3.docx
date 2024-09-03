@@ -1,0 +1,119 @@
+
+Line 1: import tkinter as tk
+
+This line imports the tkinter module, which is a Python binding to the Tk GUI toolkit. It's a standard library module that provides a way to create graphical user interfaces (GUIs) in Python. The as tk part assigns the alias tk to the tkinter module, so we can use tk instead of tkinter to access its components.
+
+Line 2: from tkinter import messagebox
+
+This line imports the messagebox module from tkinter. The messagebox module provides a way to display message boxes, which are pop-up windows that display a message to the user.
+
+Line 3: def check_winner():
+
+This line defines a function called check_winner. This function will check if there is a winner in the Tic-Tac-Toe game.
+
+Line 4: for combo in [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]:
+
+This line iterates over a list of winning combinations in the Tic-Tac-Toe game. Each combination is a list of three indices that correspond to the buttons in the game grid.
+
+Line 5: if buttons[combo[0]]["text"] == buttons[combo[1]]["text"] == buttons[combo[2]]["text"] != "":
+
+This line checks if the text of the three buttons in the current combination is the same and not empty. If this condition is true, it means that there is a winner.
+
+Line 6: buttons[combo[0]].config(bg="green")
+
+This line sets the background color of the first button in the winning combination to green.
+
+Line 7: buttons[combo[1]].config(bg="green")
+
+This line sets the background color of the second button in the winning combination to green.
+
+Line 8: buttons[combo[2]].config(bg="green")
+
+This line sets the background color of the third button in the winning combination to green.
+
+Line 9: messagebox.showinfo("Tic-Tac-Toe", f"Player {buttons[combo[0]]['text']} wins!")
+
+This line displays a message box that announces the winner of the game.
+
+Line 10: root.quit()
+
+This line closes the game window.
+
+Line 11: def button_click(index):
+
+This line defines a function called button_click. This function will be called when a button in the game grid is clicked.
+
+Line 12: if buttons[index]["text"] == "" and not winner:
+
+This line checks if the text of the button that was clicked is empty and if there is no winner yet. If this condition is true, it means that the button can be clicked.
+
+Line 13: buttons[index]["text"] = current_player
+
+This line sets the text of the button that was clicked to the current player's symbol (either "X" or "O").
+
+Line 14: check_winner()
+
+This line calls the check_winner function to check if there is a winner after the button was clicked.
+
+Line 15: toggle_player()
+
+This line calls the toggle_player function to switch the current player.
+
+Line 16: def toggle_player():
+
+This line defines a function called toggle_player. This function will switch the current player.
+
+Line 17: global current_player
+
+This line declares the current_player variable as global, so it can be accessed and modified inside the toggle_player function.
+
+Line 18: current_player = "X" if current_player == "O" else "O"
+
+This line switches the current player's symbol (either "X" or "O").
+
+Line 19: label.config(text = f"Player {current_player}'s turn")
+
+This line updates the text of the label that displays the current player's turn.
+
+Line 20: root = tk.Tk()
+
+This line creates a new instance of the Tk class, which is the main window of the GUI.
+
+Line 21: root.title("Tic-Tac-Toe")
+
+This line sets the title of the main window to "Tic-Tac-Toe".
+
+Line 22: buttons = [tk.Button(root, text="", font=("normal",25), width=6, height=2, command= lambda i=i: button_click(i)) for i in range(9)]
+
+This line creates a list of 9 buttons using a list comprehension. Each button is created with the tk.Button class, and its properties are set as follows:
+
+Line 23: for i,button in enumerate(buttons):
+
+This line iterates over the list of buttons using the enumerate function, which returns both the index and the value of each element.
+
+Line 24: button.grid(row= i //3, column=i%3)
+
+This line places each button in a grid layout using the grid method. The row and column indices are calculated using integer division and modulo operations.
+
+i // 3 calculates the row index by dividing the button's index by 3 and rounding down to the nearest whole number.
+i % 3 calculates the column index by finding the remainder of the button's index divided by 3.
+
+Line 25: current_player = "X"
+
+This line initializes the current player to "X".
+
+Line 26: winner = False
+
+This line initializes a flag to indicate whether the game has a winner.
+
+Line 27: label = tk.Label(root,text = f"Player {current_player}'s turn",font=("normal",16))
+
+This line creates a label to display the current player's turn. The label's text is set to "Player X's turn" initially.
+
+Line 28: label.grid(row=3, column=0,columnspan=3)
+
+This line places the label in the grid layout. The label spans across three columns.
+
+Line 29: root.mainloop()
+
+This line starts the main event loop of the GUI. The mainloop method waits for events, such as button clicks and key presses, and updates the GUI accordingly. The game window will remain open until the user closes it.
